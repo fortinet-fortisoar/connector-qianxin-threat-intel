@@ -3,8 +3,8 @@
   "label": "QiAnxin Threat Intelligence",
   "version": "1.0.0",
   "description": "QiAnxin Threat Intelligence Center is a provider of IP Address basis and security-related information, and accurate and detailed malicious file detection results. QiAnxin Threat Intelligence connector performs actions like IP reputation, file reputation etc.",
-  "publisher": "Fortinet",
-  "cs_approved": true,
+  "publisher": "Community",
+  "cs_approved": false,
   "cs_compatible": true,
   "category": "Threat Intelligence",
   "icon_small_name": "QiAnxin_Threat_Intelligence_32x32.png",
@@ -177,7 +177,7 @@
                 "visible": true,
                 "required": true,
                 "placeholder": "eg. [\"1.2.1.2\", \"2.1.2.1\"]",
-                "tooltip": "CSV or list of IP address. Maximum quantity 50",
+                "tooltip": "CSV or list of IP address. Maximum 50 IPs allowed",
                 "description": "Provide CSV or list of IP address for which you want to retrieve a QiAnxin report. Note: One time maximum 50 IPs allowed."
               }
             ]
@@ -328,7 +328,7 @@
                 "visible": true,
                 "required": true,
                 "placeholder": "eg. md5_value1/sha1_value1, md5_value2/sha1_value2",
-                "tooltip": "CSV of MD5/SHA1. Maximum quantity 50",
+                "tooltip": "CSV of MD5/SHA1. Maximum 50 MD5/SHA1 allowed",
                 "description": "Provide CSV of MD5/SHA1 for which you want to retrieve a QiAnxin report. Note. One time maximum 50 MD5/SHA1 quantity allowed."
               }
             ]
