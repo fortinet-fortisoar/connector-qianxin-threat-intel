@@ -1,0 +1,465 @@
+{
+  "name": "qianxin-threat-intel",
+  "label": "QiAnxin Threat Intelligence",
+  "version": "1.0.0",
+  "description": "QiAnxin Threat Intelligence Center is a provider of IP Address basis and security-related information, and accurate and detailed malicious file detection results. QiAnxin Threat Intelligence connector performs actions like IP reputation, file reputation etc.",
+  "publisher": "Community",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "category": "Threat Intelligence",
+  "icon_small_name": "QiAnxin_Threat_Intelligence_32x32.png",
+  "icon_large_name": "QiAnxin_Threat_Intelligence_80x80.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "name": "server_url",
+        "title": "Server URL",
+        "type": "text",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "value": "https://ti.qianxin.com",
+        "description": "Review the server URL of the QiAnxin Threat Intelligence server to which you will connect and retrieve data."
+      },
+      {
+        "name": "api_key",
+        "title": "API Key",
+        "type": "password",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "description": "API Key of the QiAnxin Threat Intelligence to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "Verify SSL",
+        "name": "verify_ssl",
+        "type": "checkbox",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "ip_reputation",
+      "title": "IP Reputation",
+      "annotation": "ip_reputation",
+      "description": "Retrieves a report from QiAnxin Threat Intelligence Center for the IP address basis and security-related information Webservice interface  based on the IP address you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{this['reputation_of'] === 'Single'}}",
+          "output_schema": {
+            "data": {
+              "compromised_info": [
+                {
+                  "latest_compromised_time": "",
+                  "malware_family": "",
+                  "malware_type": ""
+                }
+              ],
+              "geo": {
+                "city": "",
+                "country": "",
+                "latitude": "",
+                "longitude": "",
+                "province": ""
+              },
+              "geo_detail": {
+                "city": "",
+                "country": "",
+                "district": "",
+                "latitude": "",
+                "longitude": "",
+                "province": "",
+                "town": ""
+              },
+              "malicious_info": {
+                "ddos_confidence": "",
+                "is_brute_force": "",
+                "is_ddos": "",
+                "is_ddos_active_or_passive": "",
+                "is_hijacked": "",
+                "is_malicious": "",
+                "is_scanner": "",
+                "is_spam": "",
+                "is_web_attacker": "",
+                "latest_brute_force_time": "",
+                "latest_ddos_time": "",
+                "latest_hijacked_time": "",
+                "latest_malicious_time": "",
+                "latest_scanner_time": "",
+                "latest_spam_time": "",
+                "latest_web_attack_time": "",
+                "scanner_confidence": ""
+              },
+              "normal_info": {
+                "asn": "",
+                "asn_org": "",
+                "block_impact": "",
+                "is_idc": "",
+                "is_proxy": "",
+                "latest_domain": "",
+                "latest_domain_time": "",
+                "latest_proxy_time": "",
+                "proxy_type": "",
+                "user_type": "",
+                "vuln_info": [],
+                "device_type": "",
+                "device_series": "",
+                "device_company": "",
+                "device_protocol": ""
+              },
+              "summary": {
+                "block_impact": "",
+                "ip": "",
+                "is_compromised": "",
+                "malicious_label": [],
+                "network_type": []
+              }
+            },
+            "message": "",
+            "status": ""
+          }
+        },
+        {
+          "condition": "{{this['reputation_of'] === 'Batch'}}",
+          "output_schema": {
+            "data": {},
+            "message": "",
+            "status": ""
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "reputation_of",
+          "title": "Reputation of",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "placeholder": "",
+          "value": "Single",
+          "tooltip": "Get reputation of single IP or list of IPs",
+          "description": "Inquire IP reputation from QiAnxin by providing single IP or list of IPs.",
+          "options": [
+            "Single",
+            "Batch"
+          ],
+          "onchange": {
+            "Single": [
+              {
+                "name": "ip",
+                "title": "IP Address",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "placeholder": "eg. 1.2.1.2",
+                "tooltip": "Single value of IP",
+                "description": "Provide single IP address for which you want to retrieve a QiAnxin report."
+              }
+            ],
+            "Batch": [
+              {
+                "name": "ips",
+                "title": "IP Addresses",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "placeholder": "eg. [\"1.2.1.2\", \"2.1.2.1\"]",
+                "tooltip": "CSV or list of IP address. Maximum 50 IPs allowed",
+                "description": "Provide CSV or list of IP address for which you want to retrieve a QiAnxin report. Note: One time maximum 50 IPs allowed."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "operation": "file_reputation",
+      "title": "File Reputation",
+      "annotation": "file_reputation",
+      "description": "Retrieves accurate and detailed malicious file detection reports from QiAnxin Threat Intelligence Center based on the file md5/sha1 you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{this['reputation_of'] === 'Single' && this['advance'] === true}}",
+          "output_schema": {
+            "data": {
+              "md5": "",
+              "sha1": "",
+              "sha256": "",
+              "filetype": "",
+              "filesize": "",
+              "first_seen": "",
+              "malicious": "",
+              "malicious_type": "",
+              "malicious_family": "",
+              "targeted": "",
+              "campaign": "",
+              "scan_time": "",
+              "network": {
+                "domain": [],
+                "ip": [],
+                "url": [],
+                "tcp": [
+                  {
+                    "ip": "",
+                    "port": ""
+                  }
+                ],
+                "udp": [
+                  {
+                    "ip": "",
+                    "port": ""
+                  }
+                ],
+                "dns": [
+                  {
+                    "ip": "",
+                    "hostname": ""
+                  }
+                ],
+                "http": [
+                  {
+                    "url": "",
+                    "method": ""
+                  }
+                ]
+              },
+              "ioc": [],
+              "source": "",
+              "filename": []
+            },
+            "message": "",
+            "status": ""
+          }
+        },
+        {
+          "condition": "{{this['reputation_of'] === 'Single' && this['advance'] === false}}",
+          "output_schema": {
+            "data": {
+              "md5": "",
+              "sha1": "",
+              "sha256": "",
+              "filetype": "",
+              "filesize": "",
+              "first_seen": "",
+              "malicious": "",
+              "malicious_type": "",
+              "malicious_family": "",
+              "targeted": "",
+              "campaign": "",
+              "scan_time": ""
+            },
+            "message": "",
+            "status": ""
+          }
+        },
+        {
+          "condition": "{{this['reputation_of'] === 'Batch'}}",
+          "output_schema": {
+            "data": {},
+            "message": "",
+            "status": ""
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "advance",
+          "title": "Advanced File Reputation",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": false,
+          "tooltip": "Advanced file reputation interface provides more rich fields than normal file reputation interface which you want to retrieve from QiAnxin.",
+          "description": "Advanced file reputation interface provides more rich fields than normal file reputation interface which you want to retrieve from QiAnxin."
+        },
+        {
+          "name": "reputation_of",
+          "title": "Reputation of",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "placeholder": "",
+          "value": "Single",
+          "tooltip": "Get reputation of single md5/sha1 or list of md5/sha1",
+          "description": "Inquire file reputation from QiAnxin by providing single md5/sha1 or list of md5/sha1.",
+          "options": [
+            "Single",
+            "Batch"
+          ],
+          "onchange": {
+            "Single": [
+              {
+                "name": "hash",
+                "title": "MD5/SHA1 Hash",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "placeholder": "eg. md5_value1/sha1_value1",
+                "tooltip": "Single value of MD5/SHA1",
+                "description": "Provide single MD5/SHA1 for which you want to retrieve a QiAnxin report."
+              }
+            ],
+            "Batch": [
+              {
+                "name": "hashes",
+                "title": "MD5/SHA1",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "placeholder": "eg. md5_value1/sha1_value1, md5_value2/sha1_value2",
+                "tooltip": "CSV of MD5/SHA1. Maximum 50 MD5/SHA1 allowed",
+                "description": "Provide CSV of MD5/SHA1 for which you want to retrieve a QiAnxin report. Note. One time maximum 50 MD5/SHA1 allowed."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "operation": "get_loss_detection_data",
+      "title": "Get Loss Detection Data",
+      "annotation": "get_loss_detection_data",
+      "description": "Retrieves alarms and different log data from QiAnxin Threat Intelligence Center based on the input parameters you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{this['request_of'] === 'Single'}}",
+          "output_schema": {
+            "data": [
+              {
+                "confidence": "",
+                "risk": "",
+                "ioc_category": "",
+                "targeted": "",
+                "TTP": "",
+                "current_status": "",
+                "etime": "",
+                "kill_chain": "",
+                "platform": "",
+                "alert_name": "",
+                "tag": [],
+                "malicious_family": [],
+                "campaign": "",
+                "ioc": [],
+                "id": "",
+                "malicious_type": ""
+              }
+            ],
+            "message": "",
+            "status": ""
+          }
+        },
+        {
+          "condition": "{{this['request_of'] === 'Batch'}}",
+          "output_schema": {
+            "data": {},
+            "message": "",
+            "status": ""
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "request_of",
+          "title": "Request of",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "placeholder": "",
+          "value": "Single",
+          "tooltip": "Request for single or batch of IP/domain or URL",
+          "description": "Get alarm information from QiAnxin by providing single or batch of IP/domain or URL.",
+          "options": [
+            "Single",
+            "Batch"
+          ],
+          "onchange": {
+            "Single": [
+              {
+                "name": "param_value",
+                "title": "Value",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "tooltip": "Single value of IP, domain name, or URL",
+                "description": "Provide single IP,domain name, or URL which you want to retrieve data from QiAnxin."
+              }
+            ],
+            "Batch": [
+              {
+                "name": "params_value",
+                "title": "Values",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "placeholder": "eg. [\"domain\", \"ip\"]",
+                "tooltip": "CSV or list of IP, domain name and URL. Maximum 50 IPs, domains or URLs allowed",
+                "description": "Provide CSV or list of IP, domain name and URL for which you want to retrieve a data from QiAnxin. Note. One time maximum 50 IPs, domains or URLs allowed."
+              }
+            ]
+          }
+        },
+        {
+          "name": "ignore_url",
+          "title": "Ignore URL",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": true,
+          "tooltip": "Whether to ignore IOC middle URL part. Default: true",
+          "description": "Whether to ignore IOC middle URL part. True: ignore False: not ignore. Default: true"
+        },
+        {
+          "name": "ignore_port",
+          "title": "Ignore Port",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": true,
+          "tooltip": "Whether to ignore IOC middle port part. Default: true",
+          "description": "Whether to ignore IOC middle port part. True: ignore False: not ignore. Default: true"
+        },
+        {
+          "name": "ignore_top",
+          "title": "Ignore Top",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": true,
+          "tooltip": "Whether to ignore global domain name resolution top 1000 of domain name. Default: true",
+          "description": "Whether to ignore global domain name resolution top 1000 of domain name. True: ignore False: not ignore. Default: true"
+        }
+      ]
+    }
+  ]
+}
