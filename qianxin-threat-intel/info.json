@@ -329,7 +329,7 @@
                 "required": true,
                 "placeholder": "eg. md5_value1/sha1_value1, md5_value2/sha1_value2",
                 "tooltip": "CSV of MD5/SHA1. Maximum 50 MD5/SHA1 allowed",
-                "description": "Provide CSV of MD5/SHA1 for which you want to retrieve a QiAnxin report. Note. One time maximum 50 MD5/SHA1 quantity allowed."
+                "description": "Provide CSV of MD5/SHA1 for which you want to retrieve a QiAnxin report. Note. One time maximum 50 MD5/SHA1 allowed."
               }
             ]
           }
@@ -420,8 +420,8 @@
                 "visible": true,
                 "required": true,
                 "placeholder": "eg. [\"domain\", \"ip\"]",
-                "tooltip": "CSV or list of IP, domain name and URL. Maximum quantity 50",
-                "description": "Provide CSV or list of IP, domain name and URL for which you want to retrieve a data from QiAnxin. Note. One time maximum 50 quantity allowed."
+                "tooltip": "CSV or list of IP, domain name and URL. Maximum 50 IPs, domains or URLs allowed",
+                "description": "Provide CSV or list of IP, domain name and URL for which you want to retrieve a data from QiAnxin. Note. One time maximum 50 IPs, domains or URLs allowed."
               }
             ]
           }
