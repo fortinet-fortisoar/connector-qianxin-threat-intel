@@ -46,7 +46,7 @@
   "operations": [
     {
       "operation": "ip_reputation",
-      "title": "IP Reputation",
+      "title": "Get IP Reputation",
       "annotation": "ip_reputation",
       "description": "Retrieves a report from QiAnxin Threat Intelligence Center containing the IP reputation and security-related information based on the IP address you have specified.",
       "category": "investigation",
@@ -187,7 +187,7 @@
     },
     {
       "operation": "file_reputation",
-      "title": "File Reputation",
+      "title": "Get File Reputation",
       "annotation": "file_reputation",
       "description": "Retrieves accurate and detailed malicious file detection reports from QiAnxin Threat Intelligence Center based on the MD5/SHA1 filehash values you have specified.",
       "category": "investigation",
