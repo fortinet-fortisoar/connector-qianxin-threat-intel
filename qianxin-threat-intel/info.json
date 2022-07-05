@@ -2,14 +2,14 @@
   "name": "qianxin-threat-intel",
   "label": "QiAnxin Threat Intelligence",
   "version": "1.0.0",
-  "description": "QiAnxin Threat Intelligence Center is a provider of IP Address basis and security-related information, and accurate and detailed malicious file detection results. QiAnxin Threat Intelligence connector performs actions like IP reputation, file reputation etc.",
+  "description": "QiAnxin Threat Intelligence Center provides automate processing and the manual operation of top security research teams to provide users with accurate threat intelligence based on multi-dimensional and global data collection capabilities. QiAnxin Threat Intelligence connector performs actions like IP reputation, file reputation etc.",
   "publisher": "Community",
   "cs_approved": false,
   "cs_compatible": true,
   "category": "Threat Intelligence",
   "icon_small_name": "QiAnxin_Threat_Intelligence_32x32.png",
   "icon_large_name": "QiAnxin_Threat_Intelligence_80x80.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/qianxin-threat-intelligence/314/qianxin-threat-intelligence-v1-0-0",
   "configuration": {
     "fields": [
       {
@@ -20,7 +20,7 @@
         "visible": true,
         "required": true,
         "value": "https://ti.qianxin.com",
-        "description": "Review the server URL of the QiAnxin Threat Intelligence server to which you will connect and retrieve data."
+        "description": "Specify (or review) the URL of the QiAnxin Threat Intelligence server to which you will connect and retrieve data. For example, https://ti.qianxin.com."
       },
       {
         "name": "api_key",
@@ -29,7 +29,7 @@
         "editable": true,
         "visible": true,
         "required": true,
-        "description": "API Key of the QiAnxin Threat Intelligence to which you will connect and perform the automated operations."
+        "description": "Specify the API Token that is configured for your account for using the QiAnxin Threat Intelligence APIs."
       },
       {
         "title": "Verify SSL",
@@ -48,7 +48,7 @@
       "operation": "ip_reputation",
       "title": "IP Reputation",
       "annotation": "ip_reputation",
-      "description": "Retrieves a report from QiAnxin Threat Intelligence Center for the IP address basis and security-related information Webservice interface  based on the IP address you have specified.",
+      "description": "Retrieves a report from QiAnxin Threat Intelligence Center containing the IP reputation and security-related information based on the IP address you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -149,7 +149,7 @@
           "placeholder": "",
           "value": "Single",
           "tooltip": "Get reputation of single IP or list of IPs",
-          "description": "Inquire IP reputation from QiAnxin by providing single IP or list of IPs.",
+          "description": "Select whether you want to retrieve the IP reputation of a single IP address or a list of IP addresses from QiAnxin. \n\nIf you choose 'Single' then in the IP Address field specify a single IP address for which you want to retrieve a QiAnxin report. \n\nIf you choose 'Batch', then in the IP Addresses field specify IP addresses in the list or CSV format for which you want to retrieve a QiAnxin report. \nNote: At one time, you can specify a maximum of 50 IP addresses.",
           "options": [
             "Single",
             "Batch"
@@ -177,8 +177,8 @@
                 "visible": true,
                 "required": true,
                 "placeholder": "eg. [\"1.2.1.2\", \"2.1.2.1\"]",
-                "tooltip": "CSV or list of IP address. Maximum 50 IPs allowed",
-                "description": "Provide CSV or list of IP address for which you want to retrieve a QiAnxin report. Note: One time maximum 50 IPs allowed."
+                "tooltip": "CSV or list of IP address. At one time, you can specify a maximum of 50 IP addresses.",
+                "description": "Provide CSV or list of IP address for which you want to retrieve a QiAnxin report. Note: At one time, you can specify a maximum of 50 IP addresses."
               }
             ]
           }
@@ -189,7 +189,7 @@
       "operation": "file_reputation",
       "title": "File Reputation",
       "annotation": "file_reputation",
-      "description": "Retrieves accurate and detailed malicious file detection reports from QiAnxin Threat Intelligence Center based on the file md5/sha1 you have specified.",
+      "description": "Retrieves accurate and detailed malicious file detection reports from QiAnxin Threat Intelligence Center based on the MD5/SHA1 filehash values you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -287,8 +287,8 @@
           "visible": true,
           "required": false,
           "value": false,
-          "tooltip": "Advanced file reputation interface provides more rich fields than normal file reputation interface which you want to retrieve from QiAnxin.",
-          "description": "Advanced file reputation interface provides more rich fields than normal file reputation interface which you want to retrieve from QiAnxin."
+          "tooltip": "The Advanced file reputation interface provides more rich fields than the normal file reputation interface of QiAnxin",
+          "description": "Select this option if you want to use the 'Advanced file reputation interface' to retrieve the reputation for the filehashes you have specified from QiAnxin. The Advanced file reputation interface provides more rich fields than the normal file reputation interface of QiAnxin."
         },
         {
           "name": "reputation_of",
@@ -299,8 +299,8 @@
           "required": true,
           "placeholder": "",
           "value": "Single",
-          "tooltip": "Get reputation of single md5/sha1 or list of md5/sha1",
-          "description": "Inquire file reputation from QiAnxin by providing single md5/sha1 or list of md5/sha1.",
+          "tooltip": "Select whether you want to retrieve the file reputation of a single MD1/SHA1 filehash or a list of MD1/SHA1 filehashes from QiAnxin",
+          "description": "Select whether you want to retrieve the file reputation of a single MD1/SHA1 filehash or a list of MD1/SHA1 filehashes from QiAnxin. If you choose 'Single' then in the MD5/SHA1 Hash field specify a single MD5/SHA1 filehash for which you want to retrieve a QiAnxin report. \n\nIf you choose 'Batch', then in the MD5/SHA1 field specify MD5/SHA1 filehashes in the list or CSV format for which you want to retrieve a QiAnxin report. \nNote: At one time, you can specify a maximum of 50 MD5/SHA1 filehashes.",
           "options": [
             "Single",
             "Batch"
@@ -328,7 +328,7 @@
                 "visible": true,
                 "required": true,
                 "placeholder": "eg. md5_value1/sha1_value1, md5_value2/sha1_value2",
-                "tooltip": "CSV of MD5/SHA1. Maximum 50 MD5/SHA1 allowed",
+                "tooltip": "CSV of MD5/SHA1. Maximum 50 MD5/SHA1 allowed. At one time, you can specify a maximum of 50 MD5/SHA1 filehashes.",
                 "description": "Provide CSV of MD5/SHA1 for which you want to retrieve a QiAnxin report. Note. One time maximum 50 MD5/SHA1 allowed."
               }
             ]
@@ -340,7 +340,7 @@
       "operation": "get_loss_detection_data",
       "title": "Get Loss Detection Data",
       "annotation": "get_loss_detection_data",
-      "description": "Retrieves alarms and different log data from QiAnxin Threat Intelligence Center based on the input parameters you have specified.",
+      "description": "Retrieves alarms and different log data from QiAnxin Threat Intelligence Center based on the IP address, domain name, or URL, and other input parameters you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -393,7 +393,7 @@
           "placeholder": "",
           "value": "Single",
           "tooltip": "Request for single or batch of IP/domain or URL",
-          "description": "Get alarm information from QiAnxin by providing single or batch of IP/domain or URL.",
+          "description": "Select whether you want to retrieve alarm information of a single IP address, domain, or URL, or a list of IP addresses, domains, or URLs. \n\nIf you choose 'Single' then in the Value field specify a single IP address, domain name, or URL for which you want to retrieve data from QiAnxin. \n\nIf you choose 'Batch', then in the Values field specify IP addresses, domain names, or URLs, in the list or CSV format for which you want to retrieve data from QiAnxin. \nNote: At one time, you can specify a maximum of 50 IP addresses, domain names, or URLs. ",
           "options": [
             "Single",
             "Batch"
@@ -420,8 +420,8 @@
                 "visible": true,
                 "required": true,
                 "placeholder": "eg. [\"domain\", \"ip\"]",
-                "tooltip": "CSV or list of IP, domain name and URL. Maximum 50 IPs, domains or URLs allowed",
-                "description": "Provide CSV or list of IP, domain name and URL for which you want to retrieve a data from QiAnxin. Note. One time maximum 50 IPs, domains or URLs allowed."
+                "tooltip": "CSV or list of IP, domain name and URL. At one time, you can specify a maximum of 50 IP addresses, domain names, or URLs.",
+                "description": "Provide CSV or list of IP, domain name and URL for which you want to retrieve a data from QiAnxin. Note. At one time, you can specify a maximum of 50 IP addresses, domain names, or URLs."
               }
             ]
           }
