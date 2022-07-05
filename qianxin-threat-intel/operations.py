@@ -97,7 +97,7 @@ def ip_reputation(config, params):
         ips = params.get('ips')
         if isinstance(ips, str):
             ips = ips.split(',')
-            data = json.dumps(ips)
+        data = json.dumps(ips)
     url_split = server_url.split('//')
     url_split.insert(1, '//webapi.')
     server_url = ''.join(url_split)
