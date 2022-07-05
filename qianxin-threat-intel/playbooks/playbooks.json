@@ -23,7 +23,7 @@
               "status": null,
               "arguments": {
                 "route": "b1557ae7-8a23-405e-8d01-029f388c8ad6",
-                "title": "QiAnxin Threat Intelligence: IP Reputation",
+                "title": "QiAnxin Threat Intelligence: Get IP Reputation",
                 "resources": [
                   "alerts"
                 ],
@@ -43,7 +43,7 @@
             {
               "uuid": "276b88e0-db23-45d1-9d55-6cf5a0b14bc7",
               "@type": "WorkflowStep",
-              "name": "IP Reputation",
+              "name": "Get IP Reputation",
               "description": null,
               "status": null,
               "arguments": {
@@ -56,7 +56,7 @@
                 "version": "1.0.0",
                 "connector": "qianxin-threat-intel",
                 "operation": "ip_reputation",
-                "operationTitle": "IP Reputation",
+                "operationTitle": "Get IP Reputation",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -68,7 +68,7 @@
           ],
           "triggerLimit": null,
           "description": "Retrieves a report from QiAnxin Threat Intelligence Center for the IP address basis and security-related information Webservice interface  based on the IP address you have specified.",
-          "name": "IP Reputation",
+          "name": "Get IP Reputation",
           "tag": "#QiAnxin Threat Intelligence",
           "isActive": false,
           "singleRecordExecution": false,
@@ -85,7 +85,7 @@
               "uuid": "43266856-3b1b-45e8-8c63-9bfb19f52692",
               "label": null,
               "isExecuted": false,
-              "name": "Alerts -> IP Reputation",
+              "name": "Alerts -> Get IP Reputation",
               "sourceStep": "/api/3/workflow_steps/cc3ddd80-e697-4310-b848-93815101f88c",
               "targetStep": "/api/3/workflow_steps/276b88e0-db23-45d1-9d55-6cf5a0b14bc7"
             }
@@ -104,7 +104,7 @@
               "status": null,
               "arguments": {
                 "route": "dc1d8345-81b9-4dcc-adf8-f5853cc43f9a",
-                "title": "QiAnxin Threat Intelligence: File Reputation",
+                "title": "QiAnxin Threat Intelligence: Get File Reputation",
                 "resources": [
                   "alerts"
                 ],
@@ -124,7 +124,7 @@
             {
               "uuid": "3123c3ef-f5cd-416e-815f-cb4ae00d389c",
               "@type": "WorkflowStep",
-              "name": "File Reputation",
+              "name": "Get File Reputation",
               "description": null,
               "status": null,
               "arguments": {
@@ -138,7 +138,7 @@
                 "version": "1.0.0",
                 "connector": "qianxin-threat-intel",
                 "operation": "file_reputation",
-                "operationTitle": "File Reputation",
+                "operationTitle": "Get File Reputation",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -150,7 +150,7 @@
           ],
           "triggerLimit": null,
           "description": "Retrieves accurate and detailed malicious file detection reports from QiAnxin Threat Intelligence Center based on the file md5/sha1 you have specified.",
-          "name": "File Reputation",
+          "name": "Get File Reputation",
           "tag": "#QiAnxin Threat Intelligence",
           "isActive": false,
           "singleRecordExecution": false,
@@ -167,7 +167,7 @@
               "uuid": "73f62a79-541f-41a5-8f6a-3ae30bf7d766",
               "label": null,
               "isExecuted": false,
-              "name": "Alerts -> File Reputation",
+              "name": "Alerts -> Get File Reputation",
               "sourceStep": "/api/3/workflow_steps/68f0ef40-fdbe-44f2-99ac-2127bb5a29a5",
               "targetStep": "/api/3/workflow_steps/3123c3ef-f5cd-416e-815f-cb4ae00d389c"
             }
