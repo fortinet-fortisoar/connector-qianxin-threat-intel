@@ -2,27 +2,70 @@
   "type": "workflow_collections",
   "data": [
     {
-      "name": "Sample - QiAnxin Threat Intelligence - 1.0.0",
+      "@type": "WorkflowCollection",
+      "name": "Sample - QiAnxin Threat Intelligence - 1.1.0",
       "description": "QiAnxin Threat Intelligence Center is a provider of IP Address basis and security-related information, and accurate and detailed malicious file detection results. QiAnxin Threat Intelligence connector performs actions like IP reputation, file reputation etc.",
       "visible": true,
       "image": "QiAnxin_Threat_Intelligence_100x100.png",
-      "uuid": "10200606-728d-46af-a68e-ee2ffc20a9a8",
-      "@type": "WorkflowCollection",
+      "uuid": "786310c8-c937-4198-b23f-05e9d9663c1d",
+      "id": 546,
+      "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+      "createDate": 1657717507.971873,
+      "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+      "modifyDate": 1657717507.971873,
+      "deletedAt": null,
+      "importedBy": [],
       "recordTags": [],
       "workflows": [
         {
           "@type": "Workflow",
-          "uuid": "31af1a0c-94f6-4863-a0c9-91ab80b0ef3d",
-          "collection": "/api/3/workflow_collections/10200606-728d-46af-a68e-ee2ffc20a9a8",
+          "triggerLimit": null,
+          "name": "Get IP Reputation",
+          "aliasName": null,
+          "tag": "#QiAnxin Threat Intelligence",
+          "description": "Retrieves a report from QiAnxin Threat Intelligence Center for the IP address basis and security-related information Webservice interface  based on the IP address you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1657717513,
+          "collection": "/api/3/workflow_collections/786310c8-c937-4198-b23f-05e9d9663c1d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/3f332728-b932-422c-9d3c-ae0a70a0b71e",
           "steps": [
             {
-              "uuid": "cc3ddd80-e697-4310-b848-93815101f88c",
+              "@type": "WorkflowStep",
+              "name": "Get IP Reputation",
+              "description": null,
+              "arguments": {
+                "name": "QiAnxin Threat Intelligence",
+                "config": "",
+                "params": {
+                  "ip": "8.8.8.8",
+                  "reputation_of": "Single"
+                },
+                "version": "1.1.0",
+                "connector": "qianxin-threat-intel",
+                "operation": "ip_reputation",
+                "operationTitle": "Get IP Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "3628a620-d585-419e-b33f-ea07becebac6"
+            },
+            {
               "@type": "WorkflowStep",
               "name": "Alerts",
               "description": null,
-              "status": null,
               "arguments": {
-                "route": "b1557ae7-8a23-405e-8d01-029f388c8ad6",
+                "route": "faf9dce9-322e-4cee-8fac-186fa927fc54",
                 "title": "QiAnxin Threat Intelligence: Get IP Reputation",
                 "resources": [
                   "alerts"
@@ -36,74 +79,90 @@
                 "noRecordExecution": true,
                 "singleRecordExecution": false
               },
-              "left": "20",
-              "top": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
-            },
-            {
-              "uuid": "276b88e0-db23-45d1-9d55-6cf5a0b14bc7",
-              "@type": "WorkflowStep",
-              "name": "Get IP Reputation",
-              "description": null,
               "status": null,
-              "arguments": {
-                "name": "QiAnxin Threat Intelligence",
-                "config": "",
-                "params": {
-                  "reputation_of": "Single",
-                  "ip": "8.8.8.8"
-                },
-                "version": "1.0.0",
-                "connector": "qianxin-threat-intel",
-                "operation": "ip_reputation",
-                "operationTitle": "Get IP Reputation",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "left": "188",
-              "top": "120",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "3f332728-b932-422c-9d3c-ae0a70a0b71e"
             }
           ],
-          "triggerLimit": null,
-          "description": "Retrieves a report from QiAnxin Threat Intelligence Center for the IP address basis and security-related information Webservice interface  based on the IP address you have specified.",
-          "name": "Get IP Reputation",
-          "tag": "#QiAnxin Threat Intelligence",
-          "isActive": false,
-          "singleRecordExecution": false,
-          "parameters": [],
-          "recordTags": [
-            "qianxin-threat-intel",
-            "QiAnxin"
-          ],
-          "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/cc3ddd80-e697-4310-b848-93815101f88c",
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "43266856-3b1b-45e8-8c63-9bfb19f52692",
+              "name": "Alerts -> Get IP Reputation",
+              "targetStep": "/api/3/workflow_steps/3628a620-d585-419e-b33f-ea07becebac6",
+              "sourceStep": "/api/3/workflow_steps/3f332728-b932-422c-9d3c-ae0a70a0b71e",
               "label": null,
               "isExecuted": false,
-              "name": "Alerts -> Get IP Reputation",
-              "sourceStep": "/api/3/workflow_steps/cc3ddd80-e697-4310-b848-93815101f88c",
-              "targetStep": "/api/3/workflow_steps/276b88e0-db23-45d1-9d55-6cf5a0b14bc7"
+              "uuid": "fce834bf-596c-4654-98e9-136726eb2ca0"
             }
+          ],
+          "priority": null,
+          "uuid": "3cd6a0ea-e2b6-4786-8303-90ee63cc4059",
+          "id": 5156,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1657717507.973426,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1657717507.973426,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "qianxin-threat-intel",
+            "QiAnxin"
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "0dc0f786-7485-4c89-9fa1-a640a71b5a9a",
-          "collection": "/api/3/workflow_collections/10200606-728d-46af-a68e-ee2ffc20a9a8",
+          "triggerLimit": null,
+          "name": "Get File Reputation",
+          "aliasName": null,
+          "tag": "#QiAnxin Threat Intelligence",
+          "description": "Retrieves accurate and detailed malicious file detection reports from QiAnxin Threat Intelligence Center based on the file md5/sha1 you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1657717513,
+          "collection": "/api/3/workflow_collections/786310c8-c937-4198-b23f-05e9d9663c1d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/33a9a17e-cecb-4b37-baf4-2a3403373a81",
           "steps": [
             {
-              "uuid": "68f0ef40-fdbe-44f2-99ac-2127bb5a29a5",
+              "@type": "WorkflowStep",
+              "name": "Get File Reputation",
+              "description": null,
+              "arguments": {
+                "name": "QiAnxin Threat Intelligence",
+                "config": "",
+                "params": {
+                  "hash": "",
+                  "advance": false,
+                  "reputation_of": "Single"
+                },
+                "version": "1.1.0",
+                "connector": "qianxin-threat-intel",
+                "operation": "file_reputation",
+                "operationTitle": "Get File Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "2f0ff1c5-f849-4b28-9656-abe698f0be2a"
+            },
+            {
               "@type": "WorkflowStep",
               "name": "Alerts",
               "description": null,
-              "status": null,
               "arguments": {
-                "route": "dc1d8345-81b9-4dcc-adf8-f5853cc43f9a",
+                "route": "0ff1e632-765a-4888-add5-5c4cabb7bc11",
                 "title": "QiAnxin Threat Intelligence: Get File Reputation",
                 "resources": [
                   "alerts"
@@ -117,75 +176,64 @@
                 "noRecordExecution": true,
                 "singleRecordExecution": false
               },
-              "left": "20",
-              "top": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
-            },
-            {
-              "uuid": "3123c3ef-f5cd-416e-815f-cb4ae00d389c",
-              "@type": "WorkflowStep",
-              "name": "Get File Reputation",
-              "description": null,
               "status": null,
-              "arguments": {
-                "name": "QiAnxin Threat Intelligence",
-                "config": "",
-                "params": {
-                  "advance": false,
-                  "reputation_of": "Single",
-                  "hash": ""
-                },
-                "version": "1.0.0",
-                "connector": "qianxin-threat-intel",
-                "operation": "file_reputation",
-                "operationTitle": "Get File Reputation",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "left": "188",
-              "top": "120",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "33a9a17e-cecb-4b37-baf4-2a3403373a81"
             }
           ],
-          "triggerLimit": null,
-          "description": "Retrieves accurate and detailed malicious file detection reports from QiAnxin Threat Intelligence Center based on the file md5/sha1 you have specified.",
-          "name": "Get File Reputation",
-          "tag": "#QiAnxin Threat Intelligence",
-          "isActive": false,
-          "singleRecordExecution": false,
-          "parameters": [],
-          "recordTags": [
-            "qianxin-threat-intel",
-            "QiAnxin"
-          ],
-          "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/68f0ef40-fdbe-44f2-99ac-2127bb5a29a5",
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "73f62a79-541f-41a5-8f6a-3ae30bf7d766",
+              "name": "Alerts -> Get File Reputation",
+              "targetStep": "/api/3/workflow_steps/2f0ff1c5-f849-4b28-9656-abe698f0be2a",
+              "sourceStep": "/api/3/workflow_steps/33a9a17e-cecb-4b37-baf4-2a3403373a81",
               "label": null,
               "isExecuted": false,
-              "name": "Alerts -> Get File Reputation",
-              "sourceStep": "/api/3/workflow_steps/68f0ef40-fdbe-44f2-99ac-2127bb5a29a5",
-              "targetStep": "/api/3/workflow_steps/3123c3ef-f5cd-416e-815f-cb4ae00d389c"
+              "uuid": "a731c89c-f6d5-404d-bda2-63ceaead1c54"
             }
+          ],
+          "priority": null,
+          "uuid": "4a319d62-63b1-4373-b6d2-4f4a2e85caae",
+          "id": 5157,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1657717507.974638,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1657717507.974638,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "qianxin-threat-intel",
+            "QiAnxin"
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "e17fb3d1-82ea-4f1a-90ae-1f4fd9ded81d",
-          "collection": "/api/3/workflow_collections/10200606-728d-46af-a68e-ee2ffc20a9a8",
+          "triggerLimit": null,
+          "name": "Get Loss Detection Data",
+          "aliasName": null,
+          "tag": "#QiAnxin Threat Intelligence",
+          "description": "Retrieves alarms and different log data from QiAnxin Threat Intelligence Center based on the input parameters you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1657717513,
+          "collection": "/api/3/workflow_collections/786310c8-c937-4198-b23f-05e9d9663c1d",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/74f6026e-2780-48ac-b485-8f38e1418e64",
           "steps": [
             {
-              "uuid": "dee22c77-6c14-4242-8b1e-4ff3c7bc4dd0",
               "@type": "WorkflowStep",
               "name": "Alerts",
               "description": null,
-              "status": null,
               "arguments": {
-                "route": "6a3b6e79-23b9-4d24-ac56-3e59d3d06892",
+                "route": "f3bd1aa6-bace-439f-9cab-b0b70e4760af",
                 "title": "QiAnxin Threat Intelligence: Get Loss Detection Data",
                 "resources": [
                   "alerts"
@@ -199,27 +247,27 @@
                 "noRecordExecution": true,
                 "singleRecordExecution": false
               },
-              "left": "20",
+              "status": null,
               "top": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "74f6026e-2780-48ac-b485-8f38e1418e64"
             },
             {
-              "uuid": "859ef77f-46e1-4cef-9f19-588392e027b6",
               "@type": "WorkflowStep",
               "name": "Get Loss Detection Data",
               "description": null,
-              "status": null,
               "arguments": {
                 "name": "QiAnxin Threat Intelligence",
                 "config": "",
                 "params": {
-                  "request_of": "Single",
-                  "param_value": "test.com",
+                  "ignore_top": true,
                   "ignore_url": true,
+                  "request_of": "Single",
                   "ignore_port": true,
-                  "ignore_top": true
+                  "param_value": "test.com"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "qianxin-threat-intel",
                 "operation": "get_loss_detection_data",
                 "operationTitle": "Get Loss Detection Data",
@@ -227,34 +275,38 @@
                   "output_data": "{{vars.result}}"
                 }
               },
-              "left": "188",
+              "status": null,
               "top": "120",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "c24e6679-2e87-4741-b055-5ba030436379"
             }
           ],
-          "triggerLimit": null,
-          "description": "Retrieves alarms and different log data from QiAnxin Threat Intelligence Center based on the input parameters you have specified.",
-          "name": "Get Loss Detection Data",
-          "tag": "#QiAnxin Threat Intelligence",
-          "isActive": false,
-          "singleRecordExecution": false,
-          "parameters": [],
-          "recordTags": [
-            "qianxin-threat-intel",
-            "QiAnxin"
-          ],
-          "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/dee22c77-6c14-4242-8b1e-4ff3c7bc4dd0",
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "3defe237-aa45-49dd-bd47-bc06d7c05ef2",
+              "name": "Alerts -> Get Loss Detection Data",
+              "targetStep": "/api/3/workflow_steps/c24e6679-2e87-4741-b055-5ba030436379",
+              "sourceStep": "/api/3/workflow_steps/74f6026e-2780-48ac-b485-8f38e1418e64",
               "label": null,
               "isExecuted": false,
-              "name": "Alerts -> Get Loss Detection Data",
-              "sourceStep": "/api/3/workflow_steps/dee22c77-6c14-4242-8b1e-4ff3c7bc4dd0",
-              "targetStep": "/api/3/workflow_steps/859ef77f-46e1-4cef-9f19-588392e027b6"
+              "uuid": "2a535d4c-5a4d-4598-90a5-725cdcd91a2a"
             }
+          ],
+          "priority": null,
+          "uuid": "beccfdc5-a2b1-4940-8ef2-1b8227b88ed6",
+          "id": 5158,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1657717507.975379,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1657717507.975379,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "qianxin-threat-intel",
+            "QiAnxin"
           ]
         }
       ]

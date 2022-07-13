@@ -1,15 +1,15 @@
 {
   "name": "qianxin-threat-intel",
   "label": "QiAnxin Threat Intelligence",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "QiAnxin Threat Intelligence Center provides automate processing and the manual operation of top security research teams to provide users with accurate threat intelligence based on multi-dimensional and global data collection capabilities. QiAnxin Threat Intelligence connector performs actions like IP reputation, file reputation etc.",
-  "publisher": "Community",
-  "cs_approved": false,
+  "publisher": "Fortinet",
+  "cs_approved": true,
   "cs_compatible": true,
   "category": "Threat Intelligence",
   "icon_small_name": "QiAnxin_Threat_Intelligence_32x32.png",
   "icon_large_name": "QiAnxin_Threat_Intelligence_80x80.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/qianxin-threat-intelligence/314/qianxin-threat-intelligence-v1-0-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
