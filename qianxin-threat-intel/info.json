@@ -9,7 +9,7 @@
   "category": "Threat Intelligence",
   "icon_small_name": "QiAnxin_Threat_Intelligence_32x32.png",
   "icon_large_name": "QiAnxin_Threat_Intelligence_80x80.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.0/qianxin-threat-intelligence/363/qianxin-threat-intelligence-v1-1-0",
   "configuration": {
     "fields": [
       {

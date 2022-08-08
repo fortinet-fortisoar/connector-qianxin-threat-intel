@@ -20,7 +20,7 @@ def validate_response(response):
         raise ConnectorError(msg_string)
     if response.ok:
         status_code = response_json.get('status', '')
-        if status_code == 10000:
+        if status_code in [10000, 10100]:
             return response_json
     raise ConnectorError('{error}'.format(error=response_json))
 
@@ -96,7 +96,7 @@ def ip_reputation(config, params):
         headers.update({'Content-Type': 'application/json'})
         ips = params.get('ips')
         if isinstance(ips, str):
-            ips = ips.split(',')
+            ips = list(map(lambda x: x.strip(' '), ips.split(",")))
         data = json.dumps(ips)
     url_split = server_url.split('//')
     url_split.insert(1, '//webapi.')
@@ -106,12 +106,13 @@ def ip_reputation(config, params):
     return response
 
 
-def build_payload(params):
+def build_payload(params, make_list=[]):
     query_param = {}
     for k, v in params.items():
         if v is not None and v != '':
             query_param.update({k.strip('_value') if '_value' in k else k: list(
-                map(lambda x: x.strip(' '), v.split(","))) if isinstance(v, str) and ',' in v else v})
+                map(lambda x: x.strip(' '), v.split(","))) if (isinstance(v, str) and ',' in v) or (not isinstance(v, list)
+                                                                                                    and k in make_list) else v})
     return query_param
 
 
@@ -122,7 +123,7 @@ def get_loss_detection_data(config, params):
     }
     request_of = params.get('request_of')
     params.pop('request_of')
-    payload = build_payload(params)
+    payload = build_payload(params, make_list=['params_value'])
     endpoint = endpoint_map.get(request_of)
     server_url, api_key, verify_ssl = _get_config(config)
     payload.update({'apikey': api_key})
