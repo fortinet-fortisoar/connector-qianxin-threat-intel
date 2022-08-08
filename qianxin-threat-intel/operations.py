@@ -10,6 +10,8 @@ import json
 
 logger = get_logger('qianxin-threat-intel')
 
+MACRO_LIST = ["IP_Enrichment_Playbooks_IRIs", "FileHash_Enrichment_Playbooks_IRIs"]
+
 
 def validate_response(response):
     try:
