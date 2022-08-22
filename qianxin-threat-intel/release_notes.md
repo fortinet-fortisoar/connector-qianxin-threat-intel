@@ -1,2 +1,2 @@
 #### What's Improved
-- Certified this version of the connector.
+- This version of the connector is certified by QA.
